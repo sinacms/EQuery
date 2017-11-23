@@ -5,7 +5,7 @@ namespace EQuery\dsl\compound;
 use EQuery\dsl;
 use EQuery;
 
-class compoundbool extends dsla  {
+class compoundbool extends \EQuery\dsl\dsla  {
     public function __construct() {
         $this->obj["bool"] = array();
     }
@@ -15,19 +15,22 @@ class compoundbool extends dsla  {
             throw new EQueryException("compoundbool accept only dsl, but received ". print_r($obj));
         }
         $this->obj["bool"]['filter'][] = $obj;
+        return $this;
     }
     public function must($obj) {
         if (!($obj instanceof EQuery\dsl\dsla)) {
             throw new EQueryException("compoundbool accept only dsl, but received ". print_r($obj));
         }
         $this->obj["bool"]['must'][] = $obj;
+        return $this;
     }
 
-    public function mustnot($obj) {
+    public function must_not($obj) {
         if (!($obj instanceof EQuery\dsl\dsla)) {
             throw new EQueryException("compoundbool accept only dsl, but received ". print_r($obj));
         }
         $this->obj["bool"]['must_not'][] = $obj;
+        return $this;
     }
 
     public function should($obj) {
@@ -35,6 +38,7 @@ class compoundbool extends dsla  {
             throw new EQueryException("compoundbool accept only dsl, but received ". print_r($obj));
         }
         $this->obj["bool"]['should'][] = $obj;
+        return $this;
     }
 
     public function minimum_should_match($num) {
@@ -42,6 +46,7 @@ class compoundbool extends dsla  {
             throw new EQueryException("compoundbool minimum_should_match accept numerics, but received ". print_r($num));
         }
         $this->obj["bool"]['minimum_should_match'] = $num;
+        return $this;
     }
 
 
