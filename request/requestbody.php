@@ -16,13 +16,15 @@ class requestbody {
         $this->obj["query"] = $dsl->ToArray();
         return $this;
     }
-    public function FromSize($from, $size) {
-        if (is_numeric($from) && is_numeric($size)) {
-            $this->obj['from'] = $from;
-            $this->obj['size'] = $size;
-            return $this;
-        }
-        throw new EQuery\EQueryException("EQuery from size accepts only numerics, but received:", print_r($from, 1)." ". print_r($size, 1));
+
+    public function From($from) {
+        $this->obj['from'] = $from;
+        return $this;
+    }
+
+    public function Size($size) {
+        $this->obj['size'] = $size;
+        return $this;
     }
 
     public function Source($source) {
@@ -35,9 +37,20 @@ class requestbody {
         return $this;
     }
 
+    public function SearchAfter($expr) {
+        $this->obj['search_after'] = $expr;
+        return $this;
+    }
+
+    public function Scroll($expr) {
+        $this->obj['scroll'] = $expr;
+        return $this;
+    }
+
     public function ToArray() {
         return $this->obj;
     }
+
     public function ToJson() {
         return json_encode($this->ToArray());
     }

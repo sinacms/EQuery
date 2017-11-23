@@ -14,4 +14,5 @@ function equery_autoload ($class) {
 }
 spl_autoload_register('equery_autoload');
 
-
+// to use simple funcs
+include_once "functions.php";
