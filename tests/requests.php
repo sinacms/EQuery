@@ -10,13 +10,13 @@ class TestRequest extends TestCase {
     public static function setUpBeforeClass()
     {
         // do init
-        exec("sh ". __DIR__. DIRECTORY_SEPARATOR. "init.sh");
+        //exec("sh ". __DIR__. DIRECTORY_SEPARATOR. "init.sh");
     }
 
     public function testrequest0() {
         $rb = new EQuery\request\requestbody();
         $dsl = _bool()->must_not(_in("field3", [8, 29]));
-        $rb->Query($dsl)->From(0)->Size(10)->Sort(["field4"=>"desc"]);
+        $rb->Query($dsl)->From(0)->Size(10)->Sort(["field4"=>"desc"])->SearchAfter([1410430210001]);//  2014-09-11 10:10:10 is 1410430210000
         $rq = new EQuery\request\request(["host"=>"localhost", "port"=>"9200", "path" => "/equery/_search"]);
         $opts = ["header" => array(), "timeout" => 5];
         $a = $rq->doRequest($rb, $opts);
