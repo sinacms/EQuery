@@ -15,9 +15,11 @@ function newEQueryRequestBody() {
 function es_bool() {
     return new EQuery\dsl\compound\compoundbool();
 }
-
 function es_kv($k, $v) {
     return new EQuery\dsl\kv($k, $v);
+}
+function es_wildcard($k, $v) {
+    return EQuery\dsl\term\wildcard($k, $v);
 }
 // old functions
 
@@ -89,6 +91,11 @@ function es_in($fieldname, $values){
 }
 
 function es_notnull($fieldname){
+    $dslo = new EQuery\dsl\term\exists($fieldname);
+    return $dslo;
+}
+
+function es_exists($fieldname){
     $dslo = new EQuery\dsl\term\exists($fieldname);
     return $dslo;
 }

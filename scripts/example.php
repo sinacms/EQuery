@@ -4,6 +4,7 @@ use EQuery\dsl;
 use EQuery\dsl\term;
 use EQuery\dsl\text;
 use EQuery\dsl\compound;
+use EQuery\dsl\match_all;
 
 // old fashion
 function docSearch($expr, $size, $page, $sort, $fieldlist) {
@@ -37,4 +38,11 @@ $opts = ["header" => array(), "timeout" => 5];
 $a = $rq->doRequest($rb, $opts);
 print_r($a);
 
-
+$rb = new EQuery\request\requestbody();
+$dsl =new  EQuery\dsl\match_all();
+print_r($dsl->ToJson());
+$rb->Query($dsl)->From(10)->Size(1)->Sort(["cTime"=>"desc"])->Source("_id,tags");
+$rq = new EQuery\request\request(["host"=>"10.83.0.44", "port"=>"9201", "path" => "/comos*/_search"]);
+$opts = ["header" => array(), "timeout" => 5];
+$a = $rq->doRequest($rb, $opts);
+print_r($a);
