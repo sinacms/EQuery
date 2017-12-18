@@ -1,6 +1,5 @@
 <?php
-// to use it directory, include bootstrap;
-
+// use it directory, include bootstrap;
 define('EQUERY_PATH', __DIR__.DIRECTORY_SEPARATOR. "..". DIRECTORY_SEPARATOR);
 set_include_path(get_include_path().PATH_SEPARATOR. EQUERY_PATH);
 
@@ -14,5 +13,5 @@ function equery_autoload ($class) {
 }
 spl_autoload_register('equery_autoload');
 
-// to use simple funcs
-include_once "functions.php";
+// use simple funcs
+include_once "functions/es_functions.php";
