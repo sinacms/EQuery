@@ -2,6 +2,7 @@
 namespace EQuery\request;
 use EQuery\dsl;
 use EQuery;
+use EQuery\EQueryException;
 
 
 // here $obj is always a map; no php class/obj

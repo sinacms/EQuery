@@ -4,6 +4,7 @@ use EQuery\dsl\term;
 use EQuery\dsl\term\wildcard;
 use EQuery\dsl\text;
 use EQuery\dsl\compound;
+use EQuery\dsl\match_all;
 
 // new request and requestbody
 function newEQueryRequestBody() {
@@ -21,6 +22,9 @@ function es_kv($k, $v) {
 }
 function es_wildcard($k, $v) {
     return new EQuery\dsl\term\wildcard($k, $v);
+}
+function es_match_all() {
+    return new EQuery\dsl\match_all();
 }
 // old functions
 
