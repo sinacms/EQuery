@@ -1,6 +1,7 @@
 <?php
 use EQuery\dsl;
 use EQuery\dsl\term;
+use EQuery\dsl\term\wildcard;
 use EQuery\dsl\text;
 use EQuery\dsl\compound;
 
@@ -19,7 +20,7 @@ function es_kv($k, $v) {
     return new EQuery\dsl\kv($k, $v);
 }
 function es_wildcard($k, $v) {
-    return EQuery\dsl\term\wildcard($k, $v);
+    return new EQuery\dsl\term\wildcard($k, $v);
 }
 // old functions
 
