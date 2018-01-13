@@ -3,6 +3,7 @@
 
 
 namespace EQuery\request;
+use EQuery\EQueryException;
 
 // http protocol
 // if not convenient, one could do the request himself;

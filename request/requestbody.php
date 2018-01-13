@@ -48,6 +48,11 @@ class requestbody {
         return $this;
     }
 
+    public function Aggs($expr) {
+        $this->obj['aggs'] = $expr;
+        return $this;
+    }
+
     public function ToArray() {
         return $this->obj;
     }
