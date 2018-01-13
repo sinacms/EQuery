@@ -4,6 +4,7 @@ define('EQUERY_PATH', __DIR__.DIRECTORY_SEPARATOR. "..". DIRECTORY_SEPARATOR);
 set_include_path(get_include_path().PATH_SEPARATOR. EQUERY_PATH);
 
 function equery_autoload ($class) {
+    $file = "";
     if (strpos($class,'\\')!==false) {
         $file = EQUERY_PATH.str_replace('\\', DIRECTORY_SEPARATOR, $class).'.php';
     }
