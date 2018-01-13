@@ -1,4 +1,6 @@
 <?php
+/*
+ * 暂时先不启用
 use EQuery\dsl;
 use EQuery\dsl\term;
 use EQuery\dsl\text;
@@ -88,3 +90,4 @@ function _notnull($fieldname){
     return $dslo;
 }
 
+ */
