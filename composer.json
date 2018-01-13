@@ -1,4 +1,17 @@
 {
+    "name": "neoxue/EQuery",
+    "description": "php es lib",
+    "keywords": ["es"],
+    "homepage": "http://github.com/neoxue/EQuery",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "neoxue",
+            "email": "fenglei3@staff.sina.com.cn",
+            "homepage": "http://github.com/neoxue"
+        }
+    ],
     "require": {
         "phpunit/phpunit": "5.1.*"
     }
