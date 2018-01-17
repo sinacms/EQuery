@@ -11,22 +11,22 @@ class compoundbool extends \EQuery\dsl\dsla  {
     }
 
     public function filter($obj) {
-        if (!($obj instanceof EQuery\dsl\dsla)) {
-            throw new EQueryException("compoundbool accept only dsl, but received ". print_r($obj));
+        if (!($obj instanceof \EQuery\dsl\dsla)) {
+            throw new EQueryException("compoundbool accept only dsl, but received ". print_r($obj, 1));
         }
         $this->obj["bool"]['filter'][] = $obj;
         return $this;
     }
     public function must($obj) {
-        if (!($obj instanceof EQuery\dsl\dsla)) {
-            throw new EQueryException("compoundbool accept only dsl, but received ". print_r($obj));
+        if (!($obj instanceof \EQuery\dsl\dsla)) {
+            throw new EQueryException("compoundbool accept only dsl, but received ". print_r($obj, 1));
         }
         $this->obj["bool"]['must'][] = $obj;
         return $this;
     }
 
     public function must_not($obj) {
-        if (!($obj instanceof EQuery\dsl\dsla)) {
+        if (!($obj instanceof \EQuery\dsl\dsla)) {
             throw new EQueryException("compoundbool accept only dsl, but received ". print_r($obj));
         }
         $this->obj["bool"]['must_not'][] = $obj;
@@ -34,8 +34,8 @@ class compoundbool extends \EQuery\dsl\dsla  {
     }
 
     public function should($obj) {
-        if (!($obj instanceof EQuery\dsl\dsla)) {
-            throw new EQueryException("compoundbool accept only dsl, but received ". print_r($obj));
+        if (!($obj instanceof \EQuery\dsl\dsla)) {
+            throw new EQueryException("compoundbool accept only dsl, but received ". print_r($obj, 1));
         }
         $this->obj["bool"]['should'][] = $obj;
         return $this;
