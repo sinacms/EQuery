@@ -13,7 +13,8 @@ $dsl =new  EQuery\dsl\term\terms("docCategory_i", ['6', '15', '33', '10', '3', '
 $aggs = [
     "doccat" => [
         "terms" => [
-            "field" => "docCategory_i"
+            "field" => "docCategory_i",
+            "size"  => 100
         ]
     ]
 ];
