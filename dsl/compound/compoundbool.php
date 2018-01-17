@@ -3,7 +3,7 @@
 
 namespace EQuery\dsl\compound;
 use EQuery\dsl;
-use EQuery;
+use EQuery\EQueryException;
 
 class compoundbool extends \EQuery\dsl\dsla  {
     public function __construct() {
