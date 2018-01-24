@@ -2,7 +2,7 @@
     "name": "neoxue/equery",
     "description": "php es lib",
     "keywords": ["es"],
-    "homepage": "http://github.com/neoxue/EQuery",
+    "homepage": "http://github.com/neoxue/equery",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "EQuery\\": ""
+            "equery\\": ""
         }
     }
 }
