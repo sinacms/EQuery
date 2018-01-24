@@ -1,8 +1,7 @@
 <?php
-namespace EQuery\request;
-use EQuery\dsl;
-use EQuery;
-use EQuery\EQueryException;
+namespace equery\request;
+use \equery\dsl;
+use \equery\equeryException;
 
 
 // here $obj is always a map; no php class/obj
@@ -11,8 +10,8 @@ class requestbody {
     public function __construct() {
     }
     public function Query($dsl) {
-        if (!($dsl instanceof \EQuery\dsl\dsla)) {
-            throw new EQueryException("EQuery add query accepts only dsl, but received:", print_r($dsl));
+        if (!($dsl instanceof \equery\dsl\dsla)) {
+            throw new equeryException("equery add query accepts only dsl, but received:", print_r($dsl));
         }
         $this->obj["query"] = $dsl->ToArray();
         return $this;

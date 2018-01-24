@@ -1,7 +1,7 @@
 <?php
-namespace EQuery\dsl\term;
+namespace equery\dsl\term;
 
-class termrange extends \EQuery\dsl\dsla  {
+class termrange extends \equery\dsl\dsla  {
     public function __construct() {
         $this->obj['range'] = array();
     }

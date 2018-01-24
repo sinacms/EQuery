@@ -2,8 +2,8 @@
 
 
 
-namespace EQuery\request;
-use EQuery\EQueryException;
+namespace equery\request;
+use \equery\equeryException;
 
 // http protocol
 // if not convenient, one could do the request himself;
@@ -14,7 +14,7 @@ class request {
     public $path = "/_search";  // do not change the protocol, use midlleware;
     public function __construct($infos) {
         if (empty($infos["host"]) || empty($infos["port"])) {
-            throw new EQueryException("new Equery\request\request err: empty host or port". print_r($infos, 1));
+            throw new equeryException("new equery\request\request err: empty host or port". print_r($infos, 1));
         }
         $this->host = $infos['host'];
         $this->port = $infos['port'];

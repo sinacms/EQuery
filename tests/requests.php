@@ -2,8 +2,8 @@
 
 include_once __DIR__. DIRECTORY_SEPARATOR. "..". DIRECTORY_SEPARATOR. "bootstrap.php";
 use PHPUnit\Framework\TestCase;
-use EQuery\dsl;
-use EQuery\dsl\text;
+use equery\dsl;
+use equery\dsl\text;
 
 
 class TestRequest extends TestCase {
@@ -14,10 +14,10 @@ class TestRequest extends TestCase {
     }
 
     public function testrequest0() {
-        $rb = new EQuery\request\requestbody();
-        $dsl = _bool()->must_not(_in("field3", [8, 29]));
+        $rb = new equery\request\requestbody();
+        $dsl = es_bool()->must_not(es_in("field3", [8, 29]));
         $rb->Query($dsl)->From(0)->Size(10)->Sort(["field4"=>"desc"])->SearchAfter([1410430210001]);//  2014-09-11 10:10:10 is 1410430210000
-        $rq = new EQuery\request\request(["host"=>"localhost", "port"=>"9200", "path" => "/equery/_search"]);
+        $rq = new equery\request\request(["host"=>"localhost", "port"=>"9200", "path" => "/equery/_search"]);
         $opts = ["header" => array(), "timeout" => 5];
         $a = $rq->doRequest($rb, $opts);
         $result = json_decode($a["result"], 1);
@@ -58,10 +58,10 @@ class TestRequest extends TestCase {
     }
 
     public function testrequest1() {
-        $rb = new EQuery\request\requestbody();
-        $dsl = _and(_and(_gteq("field4", "2012-10-11 00:00:00"), _lt("field4", "2017-11-11T00:00:00Z")), _or(_not(_eq("field2", "testnot")), _match("field1", "to be")), _in("field3", [8,9, 10]));
+        $rb = new equery\request\requestbody();
+        $dsl = es_and(es_and(es_gteq("field4", "2012-10-11 00:00:00"), es_lt("field4", "2017-11-11T00:00:00Z")), es_or(es_not(es_eq("field2", "testnot")), es_match("field1", "to be")), es_in("field3", [8,9, 10]));
         $rb->Query($dsl)->From(0)->Size(10);
-        $rq = new EQuery\request\request(["host"=>"localhost", "port"=>"9200", "path" => "/equery/_search"]);
+        $rq = new equery\request\request(["host"=>"localhost", "port"=>"9200", "path" => "/equery/_search"]);
         $opts = ["header" => array(), "timeout" => 5];
         $a = $rq->doRequest($rb, $opts);
         $result = json_decode($a["result"], 1);

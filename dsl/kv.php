@@ -1,5 +1,5 @@
 <?php
-namespace EQuery\dsl;
+namespace equery\dsl;
 
 class kv extends dsla  {
     public function __construct() {

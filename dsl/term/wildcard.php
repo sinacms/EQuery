@@ -1,7 +1,7 @@
 <?php
-namespace EQuery\dsl\term;
+namespace equery\dsl\term;
 
-class wildcard extends \EQuery\dsl\dsla  {
+class wildcard extends \equery\dsl\dsla  {
     public function __construct($k, $v) {
         $this->obj['wildcard'] = array($k => $v);
     }
