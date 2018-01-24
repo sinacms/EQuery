@@ -33,6 +33,7 @@ class request {
             CURLOPT_HTTPHEADER => array("Content-Type: application/json")
         ];
         $options[CURLOPT_TIMEOUT] = empty($opts["timeout"])? 5:$opts["timeout"];
+        $options[CURLOPT_CUSTOMREQUEST] = empty($opts['method'])? 'GET':$opts['method'];
         $curl = curl_init();
         curl_setopt_array($curl, $options);
         $result = curl_exec($curl);

@@ -23,7 +23,8 @@ class TestInclude extends TestCase {
     }
 
     public function testKv() {
-        $kv = new EQuery\dsl\kv("key", "value");
+        $kv = new EQuery\dsl\kv();
+        $kv->kv("key", "value");
         $this->assertEquals($kv->ToJson(), '{"key":"value"}');
         $this->assertEquals($kv->ToArray(), ["key"=> "value"]);
         $this->assertEquals($kv->Obj(), ["key"=> "value"]);
@@ -37,14 +38,16 @@ class TestInclude extends TestCase {
     }
 
     public function testMatch2() {
-        $kvsimple = new EQuery\dsl\kv("vk1", "vv1");
+        $kvsimple = new EQuery\dsl\kv();
+        $kvsimple->kv("vk1", "vv1");
         $kv = new EQuery\dsl\text\match("key", $kvsimple);
         $this->assertEquals($kv->ToArray(), ["match"=>["key"=>["vk1"=> "vv1"]]]);
         $this->assertEquals($kv->ToJson(), '{"match":{"key":{"vk1":"vv1"}}}');
     }
 
     public function testMatchPhrase() {
-        $kvsimple = new EQuery\dsl\kv("vk1", "vv1");
+        $kvsimple = new EQuery\dsl\kv();
+        $kvsimple->kv("vk1", "vv1");
         $kv = new EQuery\dsl\text\matchphrase("key", $kvsimple);
         $this->assertEquals($kv->ToArray(), ["match_phrase"=>["key"=>["vk1"=> "vv1"]]]);
         $this->assertEquals($kv->ToJson(), '{"match_phrase":{"key":{"vk1":"vv1"}}}');
