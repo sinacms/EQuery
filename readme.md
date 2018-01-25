@@ -8,3 +8,6 @@
 # why do this:
     -   use php to search more easily
     -   when it is necessary to replace sth, or even replace elasticsearch itself, we can change this lib
+
+# examples:
+    see scripts/example.php scripts/example2.php
