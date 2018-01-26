@@ -49,6 +49,9 @@ class compoundbool extends \equery\dsl\dsla  {
         return $this;
     }
 
+    public function clear() {
+        $this->obj["bool"] = array();
+    }
 
 
 
