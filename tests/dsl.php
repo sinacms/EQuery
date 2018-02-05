@@ -31,18 +31,10 @@ class TestInclude extends TestCase {
     }
 
     public function testMatch() {
-        $kv = new equery\dsl\text\match("key", ['vk1' => 'vv1', 'vk2' => 'vv2']);
-        $this->assertEquals($kv->ToJson(), '{"match":{"key":{"vk1":"vv1","vk2":"vv2"}}}');
-        $this->assertEquals($kv->ToArray(), ["match"=>["key" => ["vk1"=> "vv1", "vk2"=> "vv2"]]]);
-        $this->assertEquals($kv->Obj(), ["match"=>["key" => ["vk1"=> "vv1", "vk2"=> "vv2"]]]);
-    }
-
-    public function testMatch2() {
-        $kvsimple = new equery\dsl\kv();
-        $kvsimple->kv("vk1", "vv1");
-        $kv = new equery\dsl\text\match("key", $kvsimple);
-        $this->assertEquals($kv->ToArray(), ["match"=>["key"=>["vk1"=> "vv1"]]]);
-        $this->assertEquals($kv->ToJson(), '{"match":{"key":{"vk1":"vv1"}}}');
+        $kv = new equery\dsl\text\match("key", "vk");
+        $this->assertEquals($kv->ToJson(), '{"match":{"key":{"query":"vk","operator":"and"}}}');
+        $this->assertEquals($kv->ToArray(), ["match"=>["key" => ["query"=> "vk", "operator"=> "and"]]]);
+        $this->assertEquals($kv->Obj(), ["match"=>["key" => ["query"=> "vk", "operator"=> "and"]]]);
     }
 
     public function testMatchPhrase() {

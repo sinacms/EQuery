@@ -75,8 +75,8 @@ function _lteq($fieldname, $value){
     return $dslo;
 }
 
-function _match($fieldname, $value){
-    $dslo = new \equery\dsl\text\match($fieldname, $value);
+function _match($fieldname, $value, $options  = ["operator" => "and"]){
+    $dslo = new \equery\dsl\text\match($fieldname, $value, $options);
     return $dslo;
 }
 
