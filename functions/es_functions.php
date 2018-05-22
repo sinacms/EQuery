@@ -31,6 +31,10 @@ function es_match_all() {
 // compound dsl
 function es_and(){
     $exprArr    = func_get_args();
+    return es_and_arr($exprArr);
+}
+
+function es_and_arr($exprArr){
     $dslo       = new \equery\dsl\compound\compoundbool();
     foreach ($exprArr as $expr) {
         if (empty($expr)) continue;
@@ -41,6 +45,10 @@ function es_and(){
 
 function es_or(){
     $exprArr    = func_get_args();
+    return es_or_arr($exprArr);
+}
+
+function es_or_arr($exprArr) {
     $dslo       = new \equery\dsl\compound\compoundbool();
     foreach ($exprArr as $expr) {
         if (empty($expr)) continue;
