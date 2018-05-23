@@ -11,7 +11,7 @@ class requestbody {
     }
     public function Query($dsl) {
         if (!($dsl instanceof \equery\dsl\dsla)) {
-            throw new equeryException("equery add query accepts only dsl, but received:", print_r($dsl));
+            throw new equeryException("equery add query accepts only dsl, but received:". json_encode($dsl, JSON_UNESCAPED_UNICODE));
         }
         $this->obj["query"] = $dsl->ToArray();
         return $this;
