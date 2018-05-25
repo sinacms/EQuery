@@ -32,8 +32,9 @@ class request {
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_HTTPHEADER => array("Content-Type: application/json")
         ];
-        $options[CURLOPT_TIMEOUT] = empty($opts["timeout"])? 5:$opts["timeout"];
+        $options[CURLOPT_TIMEOUT]       = empty($opts["timeout"])? 5:$opts["timeout"];
         $options[CURLOPT_CUSTOMREQUEST] = empty($opts['method'])? 'GET':$opts['method'];
+        $options[CURLOPT_HTTPHEADER]    = array_merge($options[CURLOPT_HTTPHEADER], $opts[CURLOPT_HTTPHEADER]);
         $curl = curl_init();
         curl_setopt_array($curl, $options);
         $result = curl_exec($curl);
