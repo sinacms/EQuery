@@ -105,4 +105,13 @@ class TestInclude extends TestCase {
         $this->assertEquals($bool2->ToJson(),  '{"bool":{"filter":[{"bool":{"must":[{"term":{"field1":"2017"}}]}}]}}');
     }
 
+    public function testNotEmpty() {
+        $fieldname = "mainPic";
+        $dslo = es_notempty($fieldname);
+        $this->assertEquals($dslo->ToJson(),  '{"bool":{"must":[{"exists":{"field":"mainPic"}}],"must_not":[{"terms":{"mainPic":[""," "]}}]}}');
+    }
 }
+
+
+
+

@@ -113,3 +113,9 @@ function es_exists($fieldname){
     return $dslo;
 }
 
+function es_notempty($field) {
+    $dslo       = new \equery\dsl\compound\compoundbool();
+    $dslo->must(es_exists($field));
+    $dslo->must_not(es_in($field, ["", " "]));
+    return $dslo;
+}
