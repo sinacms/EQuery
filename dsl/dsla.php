@@ -1,5 +1,5 @@
 <?php
-namespace EQuery\dsl;
+namespace equery\dsl;
 
 // domain specific language abstract class
 abstract class dsla{

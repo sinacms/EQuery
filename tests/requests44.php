@@ -4,7 +4,6 @@ include_once __DIR__. DIRECTORY_SEPARATOR. "..". DIRECTORY_SEPARATOR. "bootstrap
 use PHPUnit\Framework\TestCase;
 use equery\dsl;
 use equery\dsl\text;
-use equery\equeryException;
 
 
 class TestRequest extends TestCase {
@@ -18,7 +17,7 @@ class TestRequest extends TestCase {
         $rb = new equery\request\requestbody();
         $dsl = es_bool()->must_not(es_in("field3", [8, 29]));
         $rb->Query($dsl)->From(0)->Size(10)->Sort(["field4"=>"desc"])->SearchAfter([1410430210001]);//  2014-09-11 10:10:10 is 1410430210000
-        $rq = new equery\request\request(["host"=>"localhost", "port"=>"9200", "path" => "/equery/_search"]);
+        $rq = new equery\request\request(["host"=>"10.83.0.44", "port"=>"9201", "path" => "/equery/_search"]);
         $opts = ["header" => array(), "timeout" => 5];
         $a = $rq->doRequest($rb, $opts);
         $result = json_decode($a["result"], 1);
@@ -62,7 +61,7 @@ class TestRequest extends TestCase {
         $rb = new equery\request\requestbody();
         $dsl = es_and(es_and(es_gteq("field4", "2012-10-11 00:00:00"), es_lt("field4", "2017-11-11T00:00:00Z")), es_or(es_not(es_eq("field2", "testnot")), es_match("field1", "to be")), es_in("field3", [8,9, 10]));
         $rb->Query($dsl)->From(0)->Size(10);
-        $rq = new equery\request\request(["host"=>"localhost", "port"=>"9200", "path" => "/equery/_search"]);
+        $rq = new equery\request\request(["host"=>"10.83.0.44", "port"=>"9201", "path" => "/equery/_search"]);
         $opts = ["header" => array(), "timeout" => 5];
         $a = $rq->doRequest($rb, $opts);
         $result = json_decode($a["result"], 1);
@@ -86,57 +85,5 @@ class TestRequest extends TestCase {
                         "field4"=> "2014-09-12 10:10:10"
                     ]]]];
         $this->assertEquals($hits, $result["hits"]);
-    }
-
-    public function testrequestnotdsl() {
-        try {
-            // 这里写上会引发异常的代码
-            $rb = new equery\request\requestbody();
-            $dsl = " not dsl";
-            $rb->Query($dsl)->From(0)->Size(10);
-            $rq = new equery\request\request(["host"=>"localhost", "port"=>"9200", "path" => "/equery/_search"]);
-            $opts = ["header" => array(), "timeout" => 5];
-            $a = $rq->doRequest($rb, $opts);
-        } catch (equeryException $ex) {
-            $this->assertEquals($ex->getMessage(), 'equery add query accepts only dsl, but received:" not dsl"');
-            return;
-            // 抓到异常测试通过
-        }
-        // 没抓到异常就算失败
-        $this->fail('An expected exception has not been raised.' );
-    }
-    public function testrequesterr() {
-        try {
-            // 这里写上会引发异常的代码
-            $rb = new equery\request\requestbody();
-            $dsl = es_eq("hihi", "hihi");
-            $rb->Query($dsl)->From(0)->Size(10);
-            $rq = new equery\request\request(["host"=>"abcd.com", "path" => "/equery/_search"]);
-            $opts = ["header" => array(), "timeout" => 5];
-            $a = $rq->doRequest($rb, $opts);
-        } catch (equeryException $ex) {
-            $this->assertEquals($ex->getMessage(), 'new equery\equest\equest err: empty host or port{"host":"abcd.com","path":"\/equery\/_search"}');
-            return;
-            // 抓到异常测试通过
-        }
-        // 没抓到异常就算失败
-        $this->fail('An expected exception has not been raised.' );
-    }
-    public function testdslboolerr() {
-        try {
-            // 这里写上会引发异常的代码
-            $rb = new equery\request\requestbody();
-            $dsl = es_and("hihi", "hihi");
-            $rb->Query($dsl)->From(0)->Size(10);
-            $rq = new equery\request\request(["host"=>"abcd.com", "path" => "/equery/_search"]);
-            $opts = ["header" => array(), "timeout" => 5];
-            $a = $rq->doRequest($rb, $opts);
-        } catch (equeryException $ex) {
-            $this->assertEquals($ex->getMessage(), 'compoundbool must accept only dsl, but received "hihi"');
-            return;
-            // 抓到异常测试通过
-        }
-        // 没抓到异常就算失败
-        $this->fail('An expected exception has not been raised.' );
     }
 }

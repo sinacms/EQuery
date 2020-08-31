@@ -1,7 +1,7 @@
 <?php
-namespace EQuery\dsl\term;
+namespace equery\dsl\term;
 
-class exists extends \EQuery\dsl\dsla  {
+class exists extends \equery\dsl\dsla  {
     public function __construct($k) {
         $this->obj['exists'] = array("field" => $k);
     }

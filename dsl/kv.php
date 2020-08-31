@@ -1,8 +1,12 @@
 <?php
-namespace EQuery\dsl;
+namespace equery\dsl;
 
 class kv extends dsla  {
-    public function __construct($k, $v) {
+    public function __construct() {
+    }
+
+    public function kv($k, $v) {
         $this->obj[$k] = $v;
+        return $this;
     }
 }

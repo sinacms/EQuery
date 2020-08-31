@@ -1,7 +1,7 @@
 <?php
-namespace EQuery\dsl\term;
+namespace equery\dsl\term;
 
-class terms extends \EQuery\dsl\dsla  {
+class terms extends \equery\dsl\dsla  {
     public function __construct($k, $v) {
         $this->obj['terms'] = array($k => $v);
     }

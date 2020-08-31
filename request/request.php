@@ -2,11 +2,11 @@
 
 
 
-namespace EQuery\request;
-use EQuery\EQueryException;
+namespace equery\request;
+use \equery\equeryException;
 
-// http protocol
-// if not convenient, one could do the request himself;
+// http protocol/ php 版本不提供其它协议
+// TODO 需要做到依赖倒置
 
 class request {
     public $host;
@@ -14,7 +14,7 @@ class request {
     public $path = "/_search";  // do not change the protocol, use midlleware;
     public function __construct($infos) {
         if (empty($infos["host"]) || empty($infos["port"])) {
-            throw new EQueryException("new Equery\request\request err: empty host or port". print_r($infos, 1));
+            throw new equeryException("new equery\\equest\\equest err: empty host or port". json_encode($infos, JSON_UNESCAPED_UNICODE));
         }
         $this->host = $infos['host'];
         $this->port = $infos['port'];
@@ -32,7 +32,9 @@ class request {
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_HTTPHEADER => array("Content-Type: application/json")
         ];
-        $options[CURLOPT_TIMEOUT] = empty($opts["timeout"])? 5:$opts["timeout"];
+        $options[CURLOPT_TIMEOUT]       = empty($opts["timeout"])? 5:$opts["timeout"];
+        $options[CURLOPT_CUSTOMREQUEST] = empty($opts['method'])? 'GET':$opts['method'];
+        $options[CURLOPT_HTTPHEADER]    = array_merge($options[CURLOPT_HTTPHEADER], $opts[CURLOPT_HTTPHEADER]);
         $curl = curl_init();
         curl_setopt_array($curl, $options);
         $result = curl_exec($curl);
