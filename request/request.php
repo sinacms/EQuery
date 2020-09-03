@@ -34,7 +34,7 @@ class request {
         ];
         $options[CURLOPT_TIMEOUT]       = empty($opts["timeout"])? 5:$opts["timeout"];
         $options[CURLOPT_CUSTOMREQUEST] = empty($opts['method'])? 'GET':$opts['method'];
-        $options[CURLOPT_HTTPHEADER]    = array_merge($options[CURLOPT_HTTPHEADER], $opts[CURLOPT_HTTPHEADER]);
+        $options[CURLOPT_HTTPHEADER]    = !empty($opts[CURLOPT_HTTPHEADER]) ? array_merge($options[CURLOPT_HTTPHEADER], $opts[CURLOPT_HTTPHEADER]) : $options[CURLOPT_HTTPHEADER];
         $curl = curl_init();
         curl_setopt_array($curl, $options);
         $result = curl_exec($curl);
